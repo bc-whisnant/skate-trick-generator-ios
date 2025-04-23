@@ -65,36 +65,52 @@ struct ContentView: View {
     @State var chosenGrind = ""
     
     var body: some View {
+            
+    
         TabView {
-            VStack {
-                
-                Text(chosenTrick != "" ? "\(chosenTrick.uppercased())" : "Pick a Random Trick").font(.title3).padding(.bottom)
-                Button(action: generateRandomTrick) {
-                    Text("Generate Random Trick").font(.title2)
-                }.buttonStyle(.bordered)
+            ZStack {
+                Color.black.ignoresSafeArea()
+                VStack {
+                    Image("skate-wheel")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 400)
+                    
+                    Text(chosenTrick != "" ? "\(chosenTrick.uppercased())" : "Pick a Random Trick").font(.title3).padding(.bottom).foregroundStyle(.white)
+                    Button(action: generateRandomTrick) {
+                        Text("Generate Random Trick").font(.title2)
+                    }
+                }
             }
-            .padding()
+            
             .tabItem {
                 Image(systemName: "1.circle")
                 Text("Flip Tricks")
             }
             .tag(1)
-            VStack {
-                Text(chosenGrind != "" ? "\(chosenGrind.uppercased())" : "Pick a Random Grind").font(.title3).padding(.bottom)
-                Button(action: generateRandomGrind) {
-                    Text("Generate Random Grind").font(.title2)
-                }.buttonStyle(.bordered)
+            ZStack {
+                Color.black.ignoresSafeArea()
+                
+                
+                VStack {
+                    Image("skate-truck")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 350, height: 400)
+                    Text(chosenGrind != "" ? "\(chosenGrind.uppercased())" : "Pick a Random Grind").font(.title3).padding(.bottom).foregroundStyle(.white)
+                    Button(action: generateRandomGrind) {
+                        Text("Generate Random Grind").font(.title2)
+                    }
+                }
             }
-            .padding()
             .tabItem {
                 Image(systemName: "2.circle")
                 Text("Grinds")
             }
             .tag(2)
+        }.onAppear() {
+            UITabBar.appearance().barTintColor = .white
         }
-        
-        
-        
     }
     
     func generateRandomTrick() {
